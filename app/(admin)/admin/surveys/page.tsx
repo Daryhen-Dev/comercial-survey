@@ -16,7 +16,7 @@ import {
 import { SurveyActions } from '@/features/admin/surveys/survey-actions'
 
 export const metadata: Metadata = {
-  title: 'Encuestas | Survey Admin',
+  title: 'Actividades | Admin',
 }
 
 export default async function SurveysPage() {
@@ -25,11 +25,11 @@ export default async function SurveysPage() {
   return (
     <div className="p-6">
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Encuestas</h1>
+        <h1 className="text-2xl font-bold">Actividades</h1>
         <Button asChild>
           <Link href="/admin/surveys/new">
             <Plus className="mr-2 size-4" />
-            Nueva Encuesta
+            Nueva Actividad
           </Link>
         </Button>
       </div>
@@ -53,7 +53,7 @@ export default async function SurveysPage() {
                   colSpan={6}
                   className="py-8 text-center text-muted-foreground"
                 >
-                  No hay encuestas registradas
+                  No hay actividades registradas
                 </TableCell>
               </TableRow>
             ) : (

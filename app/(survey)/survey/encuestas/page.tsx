@@ -11,7 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 
 export const metadata: Metadata = {
-  title: 'Encuestas Disponibles | Portal de Encuestas',
+  title: 'Actividades Disponibles | Portal de Actividades',
 }
 
 export default async function EncuestasPage() {
@@ -51,14 +51,14 @@ export default async function EncuestasPage() {
             Volver
           </Link>
         </Button>
-        <h1 className="text-xl font-semibold text-foreground">Encuestas Disponibles</h1>
+        <h1 className="text-xl font-semibold text-foreground">Actividades Disponibles</h1>
       </div>
 
       {encuestasWithStatus.length === 0 ? (
         <Card>
           <CardContent className="pt-6">
             <p className="text-sm text-muted-foreground text-center">
-              No hay encuestas activas para tu sucursal.
+              No hay actividades activas para tu sucursal.
             </p>
           </CardContent>
         </Card>
@@ -85,7 +85,7 @@ export default async function EncuestasPage() {
                 {!encuesta.completada || encuesta.canEdit ? (
                   <Button size="sm" asChild>
                     <Link href={`/survey/${encuesta.id}`}>
-                      {encuesta.completada ? 'Editar respuestas' : 'Completar encuesta'}
+                      {encuesta.completada ? 'Editar respuestas' : 'Completar actividad'}
                     </Link>
                   </Button>
                 ) : (

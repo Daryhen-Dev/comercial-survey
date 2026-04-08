@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: EditSurveyPageProps): Promise
   return {
     title: encuesta
       ? `Editar ${encuesta.Titulo} | Survey Admin`
-      : 'Editar Encuesta | Survey Admin',
+      : 'Editar Actividad | Admin',
   }
 }
 
@@ -52,7 +52,7 @@ export default async function EditSurveyPage({ params }: EditSurveyPageProps) {
 
   return (
     <div className="p-6 max-w-3xl">
-      <h1 className="text-2xl font-bold mb-6">Editar Encuesta</h1>
+      <h1 className="text-2xl font-bold mb-6">Editar Actividad</h1>
       <SurveyForm
         action={boundUpdate}
         defaultValues={defaultValues}

@@ -5,7 +5,7 @@ import { createEncuesta } from '@/lib/actions/surveys'
 import { SurveyForm } from '@/features/admin/surveys/survey-form'
 
 export const metadata: Metadata = {
-  title: 'Nueva Encuesta | Survey Admin',
+  title: 'Nueva Actividad | Admin',
 }
 
 export default async function NewSurveyPage() {
@@ -13,7 +13,7 @@ export default async function NewSurveyPage() {
 
   return (
     <div className="p-6 max-w-3xl">
-      <h1 className="text-2xl font-bold mb-6">Nueva Encuesta</h1>
+      <h1 className="text-2xl font-bold mb-6">Nueva Actividad</h1>
       <SurveyForm
         action={createEncuesta}
         sucursales={sucursales.map((s) => ({ id: s.Id, nombre: s.Nombre }))}

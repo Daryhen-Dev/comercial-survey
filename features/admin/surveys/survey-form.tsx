@@ -86,7 +86,7 @@ export function SurveyForm({ action, defaultValues, sucursales }: SurveyFormProp
               <FormLabel>Título</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Encuesta de satisfacción Q1"
+                  placeholder="Actividad de satisfacción Q1"
                   disabled={isPending}
                   {...field}
                 />
@@ -105,7 +105,7 @@ export function SurveyForm({ action, defaultValues, sucursales }: SurveyFormProp
               <FormLabel>Descripción (opcional)</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Breve descripción de la encuesta"
+                  placeholder="Breve descripción de la actividad"
                   disabled={isPending}
                   {...field}
                 />

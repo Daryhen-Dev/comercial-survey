@@ -129,15 +129,15 @@ export function SurveyFormClient({
         const result = await submitParticipacion(values)
         if ('error' in result) {
           if (result.error === 'ALREADY_PARTICIPATED') {
-            setGlobalError('Ya completaste esta encuesta')
+            setGlobalError('Ya completaste esta actividad')
           } else {
-            setGlobalError('Ocurrió un error al enviar la encuesta')
+            setGlobalError('Ocurrió un error al enviar la actividad')
           }
           return
         }
       }
 
-      toast.success('Encuesta enviada correctamente')
+      toast.success('Actividad enviada correctamente')
       router.push('/survey')
     })
   }
@@ -193,7 +193,7 @@ export function SurveyFormClient({
           className="w-full sm:w-auto"
         >
           {isPending && <Loader2 className="mr-2 size-4 animate-spin" />}
-          {existingParticipacion ? 'Guardar cambios' : 'Enviar encuesta'}
+          {existingParticipacion ? 'Guardar cambios' : 'Enviar actividad'}
         </Button>
       )}
     </div>

@@ -7,7 +7,7 @@ import { db } from '@/lib/db'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 export const metadata: Metadata = {
-  title: 'Menú | Portal de Encuestas',
+  title: 'Menú | Portal de Actividades',
 }
 
 export default async function SurveyMenuPage() {
@@ -41,8 +41,8 @@ export default async function SurveyMenuPage() {
                 <ClipboardList className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <CardTitle className="text-lg">Realizar Encuesta</CardTitle>
-                <CardDescription>Completá las encuestas disponibles para tu sucursal.</CardDescription>
+                <CardTitle className="text-lg">Realizar Actividad</CardTitle>
+                <CardDescription>Completá las actividades disponibles para tu sucursal.</CardDescription>
               </div>
             </CardHeader>
           </Card>
@@ -56,7 +56,7 @@ export default async function SurveyMenuPage() {
               </div>
               <div>
                 <CardTitle className="text-lg">Mis Reportes</CardTitle>
-                <CardDescription>Consultá las encuestas que completaste esta semana.</CardDescription>
+                <CardDescription>Consultá las actividades que completaste esta semana.</CardDescription>
               </div>
             </CardHeader>
           </Card>

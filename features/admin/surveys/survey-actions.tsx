@@ -24,7 +24,7 @@ export function SurveyActions({ id, activa }: SurveyActionsProps) {
   return (
     <div className="flex items-center gap-2">
       <Button variant="ghost" size="icon" asChild>
-        <Link href={`/admin/surveys/${id}/edit`} aria-label="Editar encuesta">
+        <Link href={`/admin/surveys/${id}/edit`} aria-label="Editar actividad">
           <Pencil className="size-4" />
         </Link>
       </Button>
@@ -35,7 +35,7 @@ export function SurveyActions({ id, activa }: SurveyActionsProps) {
             variant="ghost"
             size="icon"
             disabled={isPending}
-            aria-label={activa ? 'Desactivar encuesta' : 'Activar encuesta'}
+            aria-label={activa ? 'Desactivar actividad' : 'Activar actividad'}
           >
             {activa ? (
               <PowerOff className="size-4 text-destructive" />
@@ -44,11 +44,11 @@ export function SurveyActions({ id, activa }: SurveyActionsProps) {
             )}
           </Button>
         }
-        title={activa ? 'Desactivar encuesta' : 'Activar encuesta'}
+        title={activa ? 'Desactivar actividad' : 'Activar actividad'}
         description={
           activa
-            ? '¿Estás seguro de que querés desactivar esta encuesta?'
-            : '¿Estás seguro de que querés activar esta encuesta?'
+            ? '¿Estás seguro de que querés desactivar esta actividad?'
+            : '¿Estás seguro de que querés activar esta actividad?'
         }
         onConfirm={handleToggle}
         destructive={activa}

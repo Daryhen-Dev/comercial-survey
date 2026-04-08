@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 
 export const metadata: Metadata = {
-  title: 'Mis Reportes | Portal de Encuestas',
+  title: 'Mis Reportes | Portal de Actividades',
 }
 
 function getWeekStart(): Date {
@@ -48,13 +48,13 @@ export default async function ReportesPage() {
         <h1 className="text-xl font-semibold text-foreground">Mis Reportes</h1>
       </div>
 
-      <p className="text-sm text-muted-foreground">Encuestas completadas esta semana.</p>
+      <p className="text-sm text-muted-foreground">Actividades completadas esta semana.</p>
 
       {participaciones.length === 0 ? (
         <Card>
           <CardContent className="pt-6">
             <p className="text-sm text-muted-foreground text-center">
-              No completaste ninguna encuesta esta semana.
+              No completaste ninguna actividad esta semana.
             </p>
           </CardContent>
         </Card>
