@@ -21,9 +21,9 @@ export default auth(function middleware(req) {
   }
 
   // Ecuador IP restriction — only enforced in production on Vercel
-  // req.geo is populated by Vercel's Edge Network automatically
+  // x-vercel-ip-country is set automatically by Vercel's Edge Network
   if (pathname.startsWith('/survey') && process.env.NODE_ENV === 'production') {
-    const country = req.geo?.country
+    const country = req.headers.get('x-vercel-ip-country')
 
     // If Vercel geo is available and country is not Ecuador → block
     if (country && country !== 'EC') {
