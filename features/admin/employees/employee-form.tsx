@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2 } from 'lucide-react'
 
+import { z } from 'zod'
 import { EmployeeSchema, type EmployeeFormValues } from '@/lib/validations/employee'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -42,7 +43,7 @@ export function EmployeeForm({
   const [isPending, startTransition] = useTransition()
   const [sucursalId, setSucursalId] = useState<number | undefined>(defaultSucursalId)
 
-  const form = useForm<EmployeeFormValues>({
+  const form = useForm<EmployeeFormValues, unknown, z.output<typeof EmployeeSchema>>({
     resolver: zodResolver(EmployeeSchema),
     defaultValues: {
       nombre: defaultValues?.nombre ?? '',

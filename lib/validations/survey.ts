@@ -2,14 +2,14 @@ import { z } from 'zod'
 
 export const OptionSchema = z.object({
   texto: z.string().min(1, 'La opción es requerida').max(300),
-  orden: z.number().optional().default(0),
+  orden: z.number(),
 })
 
 export const QuestionSchema = z.object({
   texto: z.string().min(1, 'La pregunta es requerida').max(500),
   tipoPregunta: z.enum(['RADIO', 'CHECKBOX', 'BOTH']),
-  orden: z.number().optional().default(0),
-  requerida: z.boolean().default(true),
+  orden: z.number(),
+  requerida: z.boolean(),
   opciones: z.array(OptionSchema).min(2, 'Mínimo 2 opciones por pregunta'),
 })
 

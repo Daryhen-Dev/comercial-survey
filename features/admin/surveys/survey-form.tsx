@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2 } from 'lucide-react'
 
+import { z } from 'zod'
 import { SurveySchema, type SurveyFormValues } from '@/lib/validations/survey'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -34,7 +35,7 @@ interface SurveyFormProps {
 export function SurveyForm({ action, defaultValues, sucursales }: SurveyFormProps) {
   const [isPending, startTransition] = useTransition()
 
-  const form = useForm<SurveyFormValues>({
+  const form = useForm<SurveyFormValues, unknown, z.output<typeof SurveySchema>>({
     resolver: zodResolver(SurveySchema),
     defaultValues: {
       titulo: defaultValues?.titulo ?? '',
