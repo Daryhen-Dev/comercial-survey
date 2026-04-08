@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Admin Auth ───────────────────────────────────────────────────────────────
+
+model User {
+  Id           Int      @id @default(autoincrement())
+  Email        String   @unique
+  PasswordHash String
+  Name         String
+  CreatedAt    DateTime @default(now())
+}
+
+// ─── Domain ───────────────────────────────────────────────────────────────────
+
+model Sucursal {
+  Id        Int                @id @default(autoincrement())
+  Nombre    String             @db.VarChar(150)
+  CreatedAt DateTime           @default(now())
+  Empleados EmpleadoSucursal[]
+  Encuestas Encuesta[]
+}
+
+model Empleado {
+  Id        Int                @id @default(autoincrement())
+  CI        String             @unique @db.VarChar(20)
+  Nombre    String             @db.VarChar(100)
+  Apellido  String             @db.VarChar(100)
+  Estado    Boolean            @default(true)
+  CreatedAt DateTime           @default(now())
+  Sucursales EmpleadoSucursal[]
+}
+
+model EmpleadoSucursal {
+  Id          Int            @id @default(autoincrement())
+  Empleado_Id Int
+  Sucursal_Id Int
+  Estado      Boolean        @default(true)
+  FechaInicio DateTime       @default(now())
+  FechaFin    DateTime?
+  Empleado    Empleado       @relation(fields: [Empleado_Id], references: [Id])
+  Sucursal    Sucursal       @relation(fields: [Sucursal_Id], references: [Id])
+  Participaciones Participacion[]
+
+  // NOTE: DB enforces only 1 active assignment per employee via a partial unique index,
+  // applied manually in migration SQL:
+  // CREATE UNIQUE INDEX "uq_empleado_activo" ON "EmpleadoSucursal"("Empleado_Id") WHERE "Estado" = true;
+  // Prisma schema has no @@unique here because Prisma DSL cannot express partial/filtered indexes.
+  // App layer must deactivate previous assignment before creating a new one.
+}
+
+enum TipoPregunta {
+  CHECKBOX
+  RADIO
+  BOTH
+}
+
+model Encuesta {
+  Id          Int           @id @default(autoincrement())
+  Titulo      String        @db.VarChar(200)
+  Descripcion String?
+  Activa      Boolean       @default(true)
+  Sucursal_Id Int
+  CreatedAt   DateTime      @default(now())
+  Sucursal    Sucursal      @relation(fields: [Sucursal_Id], references: [Id])
+  Preguntas   Pregunta[]
+  Participaciones Participacion[]
+}
+
+model Pregunta {
+  Id          Int          @id @default(autoincrement())
+  Texto       String       @db.VarChar(500)
+  Tipo        TipoPregunta @default(RADIO)
+  Orden       Int          @default(0)
+  Requerida   Boolean      @default(true)
+  Encuesta_Id Int
+  Encuesta    Encuesta     @relation(fields: [Encuesta_Id], references: [Id], onDelete: Cascade)
+  Opciones    Opcion[]
+  Respuestas  Respuesta[]
+}
+
+model Opcion {
+  Id          Int       @id @default(autoincrement())
+  Texto       String    @db.VarChar(300)
+  Orden       Int       @default(0)
+  Pregunta_Id Int
+  Pregunta    Pregunta  @relation(fields: [Pregunta_Id], references: [Id], onDelete: Cascade)
+  Respuestas  Respuesta[]
+}
+
+model Participacion {
+  Id                  Int              @id @default(autoincrement())
+  EmpleadoSucursal_Id Int
+  Encuesta_Id         Int
+  Observacion         String?
+  DateCreated         DateTime         @default(now())
+  DateUpdated         DateTime         @updatedAt
+  EmpleadoSucursal    EmpleadoSucursal @relation(fields: [EmpleadoSucursal_Id], references: [Id])
+  Encuesta            Encuesta         @relation(fields: [Encuesta_Id], references: [Id])
+  Respuestas          Respuesta[]
+
+  @@unique([EmpleadoSucursal_Id, Encuesta_Id])
+}
+
+model Respuesta {
+  Id               Int           @id @default(autoincrement())
+  Participacion_Id Int
+  Pregunta_Id      Int
+  Opcion_Id        Int
+  Participacion    Participacion @relation(fields: [Participacion_Id], references: [Id], onDelete: Cascade)
+  Pregunta         Pregunta      @relation(fields: [Pregunta_Id], references: [Id])
+  Opcion           Opcion        @relation(fields: [Opcion_Id], references: [Id])
+}
