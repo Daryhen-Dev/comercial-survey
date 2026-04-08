@@ -34,7 +34,6 @@ export default async function EditBranchPage({ params }: EditBranchPageProps) {
         action={boundUpdate}
         defaultValues={{
           nombre: sucursal.Nombre,
-          direccion: sucursal.Direccion ?? undefined,
         }}
       />
     </div>
