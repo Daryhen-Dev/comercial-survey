@@ -8,7 +8,7 @@ export const EmployeeSchema = z.object({
 })
 
 export const AssignmentSchema = z.object({
-  sucursalId: z.number({ required_error: 'La sucursal es requerida' }),
+  sucursalId: z.number({ error: 'La sucursal es requerida' }),
 })
 
 export type EmployeeFormValues = z.infer<typeof EmployeeSchema>

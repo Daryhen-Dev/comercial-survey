@@ -16,7 +16,7 @@ export const QuestionSchema = z.object({
 export const SurveySchema = z.object({
   titulo: z.string().min(1, 'El título es requerido').max(200),
   descripcion: z.string().optional(),
-  sucursalId: z.number({ required_error: 'Seleccione una sucursal' }),
+  sucursalId: z.number({ error: 'Seleccione una sucursal' }),
   preguntas: z.array(QuestionSchema).min(1, 'Mínimo 1 pregunta por encuesta'),
 })
 
