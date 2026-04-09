@@ -17,7 +17,15 @@ export default function SurveyLayout({
           <Home className="size-3.5" />
           Inicio
         </Link>
-        <ThemeToggle />
+        <div className="flex items-center gap-3">
+          <Link
+            href="/admin"
+            className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Administración
+          </Link>
+          <ThemeToggle />
+        </div>
       </header>
       <main className="min-h-screen flex flex-col items-center justify-start pt-12 px-4">
         {children}
